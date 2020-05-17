@@ -92,11 +92,11 @@ int main()
 {
 	printf("\033[0;34m===== TEST LIBASM =====\n\033[0m");
 
-	// test_strlen();
-	// test_strcmp();
-	// test_strcpy();
-	// test_strdup();
+	test_strlen();
+	test_strcmp();
+	test_strcpy();
+	test_strdup();
 	// test_write();
-	test_read();
+	// test_read();
 	return (0);
 }

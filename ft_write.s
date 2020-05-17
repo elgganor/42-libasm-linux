@@ -1,8 +1,8 @@
 	section .text
-	global _ft_write
-	extern __errno_location
+	global ft_write
+	extern ___error
 
-_ft_write:
+ft_write:
 	mov rax, 0x02000004
 	syscall
 	jc error
@@ -11,7 +11,7 @@ _ft_write:
 error:
 	neg rax
 	mov rdx, rax
-	call __errno_location
+	call ___error
 	mov [rax], rdx
 	mov rax, -1
 	ret

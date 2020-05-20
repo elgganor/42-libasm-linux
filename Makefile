@@ -25,10 +25,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-test: re
-	rm -f libasm
-	make clean
-	gcc -Wall -Wextra -Werror main.c -L. -lasm -o libasm
-	./libasm
-

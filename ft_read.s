@@ -3,15 +3,16 @@
 	extern __errno_location
 
 ft_read:
-	mov rax, 0x02000003
+	mov rax, 0
 	syscall
-	jc error
+	cmp rax, 0
+	jl error
 	ret
 
 error:
 	neg rax
-	mov rdx,rax
+	mov rdx, rax
 	call __errno_location
-	mov [rax],rdx
-	mov rax,-1
+	mov [rax], rdx
+	mov rax, -1
 	ret

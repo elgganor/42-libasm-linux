@@ -53,39 +53,48 @@ void test_strdup()
 
 void test_write()
 {
-
+	printf("\033[0;32m\n=== ft_read ===\n\033[0m");
 }
 
 void test_read()
 {
 	int	fd;
 	int ret;
-	char buf[100];
+	char *buf;
 
-	fd = open("read.txt", O_RDONLY);
+	printf("\033[0;32m\n=== ft_read ===\n\033[0m");
+
 	errno = 0;
+	fd = open("read.txt", O_RDONLY);
+	buf = calloc(100, sizeof(char));
 	ret = read(fd, buf, 50);
 	buf[50] = '\0';
-	printf("[%d] %s\nerrno: %d\n", ret, buf, errno);
+	printf("fd => %d\nret => %d\nbuf => %s\nerrno => %d\n\n", fd, ret, buf, errno);
+	free(buf);
 	close(fd);
 
-	fd = open("read.txt", O_RDONLY);
 	errno = 0;
+	fd = open("read.txt", O_RDONLY);
+	buf = calloc(100, sizeof(char));
 	ret = ft_read(fd, buf, 50);
 	buf[50] = '\0';
-	printf("[%d] %s\nerrno: %d\n", ret, buf, errno);
+	printf("fd => %d\nret => %d\nbuf => %s\nerrno => %d\n\n", fd, ret, buf, errno);
+	free(buf);
 	close(fd);
 
-
 	errno = 0;
+	buf = calloc(100, sizeof(char));
 	ret = read(-1, buf, 50);
 	buf[50] = '\0';
-	printf("[%d] %s\nerrno: %d\n", ret, buf, errno);
+	printf("fd => %d\nret => %d\nbuf => %s\nerrno => %d\n\n", -1, ret, buf, errno);
+	free(buf);
 
 	errno = 0;
+	buf = calloc(100, sizeof(char));
 	ret = ft_read(-1, buf, 50);
 	buf[50] = '\0';
-	printf("[%d] %s\nerrno: %d\n", ret, buf, errno);
+	printf("fd => %d\nret => %d\nbuf => %s\nerrno => %d\n\n", -1, ret, buf, errno);
+	free(buf);
 }
 
 int main()
@@ -97,6 +106,6 @@ int main()
 	test_strcpy();
 	test_strdup();
 	// test_write();
-	// test_read();
+	test_read();
 	return (0);
 }

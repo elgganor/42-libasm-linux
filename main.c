@@ -6,7 +6,7 @@
 /*   By: mrouabeh <mrouabeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:25:36 by mrouabeh          #+#    #+#             */
-/*   Updated: 2020/05/16 18:19:09 by mrouabeh         ###   ########.fr       */
+/*   Updated: 2020/05/20 17:22:39 by mrouabeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,31 @@ void test_strdup()
 
 void test_write()
 {
-	printf("\033[0;32m\n=== ft_read ===\n\033[0m");
+	int fd;
+	char *str = "Hello world\n";
+
+	printf("\033[0;32m\n=== ft_write ===\n\033[0m");
+
+	ft_write(1, str, 12);
+	write(1, str, 12);
+
+	ft_write(1, &"", 1);
+	ft_write(1, &"\n", 1);
+	write(1, &"", 1);
+	write(1, &"\n", 1);
+
+	fd = open("write.txt", O_CREAT, O_APPEND, O_WRONLY);
+	ft_write(fd, str, 12);
+	write(fd, str, 12);
+	close(fd);
+
+	errno = 0;
+	ft_write(-1, str, 12);
+	printf("errno => %d\n", errno);
+
+	errno = 0;
+	write(-1, str, 12);
+	printf("errno => %d\n", errno);
 }
 
 void test_read()

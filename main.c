@@ -6,7 +6,7 @@
 /*   By: mrouabeh <mrouabeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:25:36 by mrouabeh          #+#    #+#             */
-/*   Updated: 2020/05/20 17:22:39 by mrouabeh         ###   ########.fr       */
+/*   Updated: 2020/06/15 13:33:34 by mrouabeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void test_write()
 	write(1, &"", 1);
 	write(1, &"\n", 1);
 
-	fd = open("write.txt", O_CREAT, O_APPEND, O_WRONLY);
+	fd = open("write.txt", O_CREAT | O_APPEND | O_WRONLY, S_IRUSR | S_IWUSR);
 	ft_write(fd, str, 12);
 	write(fd, str, 12);
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: mrouabeh <mrouabeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:25:36 by mrouabeh          #+#    #+#             */
-/*   Updated: 2020/06/15 13:33:34 by mrouabeh         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:20:14 by mrouabeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void test_strlen()
 	printf("M: Normal => %zu\n", ft_strlen("Hello"));
 	printf("R: Normal => %zu\n", strlen("Hello"));
 	printf("M: Long => %zu\n", ft_strlen("Hello world; test1; test2; test3; test4; test5\n"));
-	printf("R: Long => %zu\n", strlen("Hello world; test1; test2; test3; test4; test5"));
+	printf("R: Long => %zu\n", strlen("Hello world; test1; test2; test3; test4; test5\n"));
 }
 
 void test_strcmp()
@@ -78,6 +78,12 @@ void test_write()
 	errno = 0;
 	write(-1, str, 12);
 	printf("errno => %d\n", errno);
+	
+	fd = open("write.txt", O_WRONLY);
+	ft_write(fd, str, 12);
+	write(fd, str, 12);
+	printf("fd => %d\n", fd);
+	close(fd);
 }
 
 void test_read()
@@ -129,7 +135,7 @@ int main()
 	test_strcmp();
 	test_strcpy();
 	test_strdup();
-	// test_write();
 	test_read();
+	test_write();
 	return (0);
 }
